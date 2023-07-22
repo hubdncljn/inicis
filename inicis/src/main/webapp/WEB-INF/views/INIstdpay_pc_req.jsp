@@ -58,10 +58,7 @@
                     <form name="" id="SendPayForm_id" method="post" class="mt-5">
                         <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">
 				    
-                            <!--label class="col-10 col-sm-2 gap-2 input param" style="border:none;">version</label>
-                            <label class="col-10 col-sm-9 input"-->
-                                <input type="hidden" name="version" value="1.0">
-                            <!--/label-->
+                            <input type="hidden" name="version" value="1.0">
 				    
                             <label class="col-10 col-sm-2 input param" style="border:none;">gopaymethod</label>
                             <label class="col-10 col-sm-9 input">

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -26,7 +28,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, ModelMap modelMap) {
+	public String pc(Locale locale, ModelMap modelMap) {
 		String mid					= "INIpayTest";		                    // 상점아이디					
 		modelMap.addAttribute("mid", mid);
 		String signKey			    = "SU5JTElURV9UUklQTEVERVNfS0VZU1RS";	// 웹 결제 signkey
@@ -35,7 +37,6 @@ public class HomeController {
 			String mKey = SignatureUtil.hash(signKey, "SHA-256");
 			modelMap.addAttribute("mKey", mKey);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
@@ -58,25 +59,37 @@ public class HomeController {
 			String signature = SignatureUtil.makeSignature(signParam);
 			modelMap.addAttribute("signature", signature);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}			// signature 대상: oid, price, timestamp (알파벳 순으로 정렬후 NVP 방식으로 나열해 hash)
+		}
 		signParam.put("signKey", signKey);
 
 		try {
 			String verification = SignatureUtil.makeSignature(signParam);
 			modelMap.addAttribute("verification", verification);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		// verification 대상 : oid, price, signkey, timestamp (알파벳 순으로 정렬후 NVP 방식으로 나열해 hash)
+		}
 		return "INIstdpay_pc_req";
+	}
+	
+	@RequestMapping(value = "/mo", method = RequestMethod.GET)
+	public String mo(@RequestParam Map<String, Object> map) {
+		System.err.println(map);
+		return "INImobile_mo_req";
 	}
 	
 	@RequestMapping(value = "/INIstdpay_pc_return", method = RequestMethod.POST)
 	public String INIstdpay_pc_return(@RequestParam Map<String, Object> map) {
 		System.err.println(map);
 		return "INIstdpay_pc_return";
+	}
+	
+	@RequestMapping(value = "/INImobile_mo_return", method = RequestMethod.POST)
+	public String INIstdpay_mo_return(@RequestParam Map<String, Object> map, HttpServletRequest request) {
+		System.err.println(map);
+		System.err.println(request.getAttribute("P_REQ_URL"));
+		request.setAttribute("P_REQ_URL", "https://stgmobile.inicis.com/smart/payReq.ini");
+		return "INImobile_mo_return";
 	}
 	
 }
