@@ -15,7 +15,6 @@
         <title>KG이니시스 결제샘플</title>
         <link rel="stylesheet" href="/resources/css/style.css">
 		<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/resources/css/fullpage.min.css">
 		
 		<script> 
 	        function on_pay() { 
