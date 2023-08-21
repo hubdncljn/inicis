@@ -233,7 +233,7 @@
                     </div>
                 </form>
 				
-				<button onclick="location.href='INIstdpay_pc_req.jsp'" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">돌아가기</button>
+				<button onclick="location.href='/'" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">돌아가기</button>
 					
                 </div>
             </section>

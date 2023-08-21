@@ -116,6 +116,13 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>        
+		<dependency>
+	        <groupId>inipaysample</groupId>
+	        <artifactId>inipaysample</artifactId>
+	        <version>1.3.0</version>
+	        <scope>system</scope>
+	        <systemPath>C:\workspace\INIpaySample_v1.3.jar</systemPath>
+	    </dependency>
 	</dependencies>
     <build>
         <plugins>
